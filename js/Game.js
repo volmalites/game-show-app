@@ -22,7 +22,6 @@ class Game {
             "Have a nice day",
             "Thank you very much",
             "You are awesome",
-            "Falling in love with you",
             "Never gonna give you up"
         ];
         this.activePhrase = null;
