@@ -18,11 +18,11 @@ class Game {
     constructor() {
         this.missed = 0;
         this.phrases = [
-            "How are you friend",
-            "Have a nice day",
-            "Thank you very much",
-            "You are awesome",
-            "Never gonna give you up"
+            { phrase: "How are you friend" },
+            { phrase: "Have a nice day" },
+            { phrase: "Thank you very much" },
+            { phrase: "You are awesome" },
+            { phrase: "Never gonna give you up" }
         ];
         this.activePhrase = null;
         this.startingKeyBoard = document.getElementById('qwerty').innerHTML;
@@ -54,7 +54,7 @@ class Game {
     }
 
     getRandomPhrase() {
-        return this.phrases[Math.floor(Math.random() * this.phrases.length)]
+        return this.phrases[Math.floor(Math.random() * this.phrases.length)].phrase
     }
 
     handleInteraction() { //interaction from user on key presses
