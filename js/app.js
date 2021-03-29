@@ -17,11 +17,11 @@ messageBox.innerHTML = '<h2>select any key on your keyboard or from the screen b
 phraseContainer.parentElement.insertBefore(messageBox, phraseContainer);
 //End Message Box
 
-const game = new Game();
 const keyBoard = document.getElementById('qwerty');
 
 //Game is tarted when the 'Start Game' button is pressed
 const startButton = document.getElementById('btn__reset').addEventListener('click', () => {
+    let game = new Game();
     game.startGame();
 
     keyBoard.addEventListener('click', e => { //on screen keyboard
@@ -30,11 +30,11 @@ const startButton = document.getElementById('btn__reset').addEventListener('clic
             game.handleInteraction();
         }
     });
-});
 
-document.addEventListener('keydown', e => { //physical keyboard
-    if (/^[a-z]?$/.test(e.key) && game.gameReady) {
-        game.findButton(e.key);
-        game.handleInteraction();
-    }
+    document.addEventListener('keydown', e => { //physical keyboard
+        if (/^[a-z]?$/.test(e.key) && game.gameReady) {
+            game.findButton(e.key);
+            game.handleInteraction();
+        }
+    });
 });
