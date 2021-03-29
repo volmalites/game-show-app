@@ -47,14 +47,10 @@ class Game {
 
     startGame() {
         document.getElementById('overlay').style.display = 'none';
-        this.activePhrase = new Phrase(this.getRandomPhrase());
+        this.activePhrase = new Phrase(this.phrases[Math.floor(Math.random() * this.phrases.length)].phrase);
         this.activePhrase.addPhraseToDisplay();
         this.gameReady = true;
         document.body.style.backgroundColor = `rgb(${this.background.r}, ${this.background.g}, ${this.background.b})`;
-    }
-
-    getRandomPhrase() {
-        return this.phrases[Math.floor(Math.random() * this.phrases.length)].phrase
     }
 
     handleInteraction() { //interaction from user on key presses
@@ -92,7 +88,7 @@ class Game {
         if (this.missed === 5) {
             this.gameReady = false;
             this.message(this.messageBox, '<span style="color:#8b0000;">game over</span>');
-            setTimeout(() => this.gameOver('You ran out of lives, try again...'), 2500);
+            this.gameOver('You ran out of lives, try again...'); //the timeout set here caused confusion with the Treehouse reviewer, removing this for resubmission
         }
 
         if (this.missed === 4) {
@@ -111,13 +107,7 @@ class Game {
         this.message(this.messageBox, 'select any key on your keyboard or from the screen below');
         document.getElementById('qwerty').innerHTML = this.startingKeyBoard;
         document.getElementById('scoreboard').innerHTML = this.startingLifePoints;
-        this.missed = 0;
         this.gameReady = false;
-        this.background = {
-            r: 0,
-            g: 220,
-            b: 250
-        };
     }
     
     findButton(key) { //this fires on physical keyboard key presses and is instantiated against the onscreen keyboard
