@@ -19,6 +19,12 @@ Informative messages
 The messages update on screen informing the player about their interaction with the game.
 ```
 
+Game does not immediately quit after the player loses
+
+```
+Once all lives are removed, a setTimeout() function is instantiated for 2 seconds in order to allow for the animation to turn the screen red and to properly display all lives as removed.
+```
+
 ## Authors
 
 * **Bjorn Lottering** - [Volmalites](https://github.com/volmalites)
