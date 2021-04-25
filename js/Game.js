@@ -68,7 +68,7 @@ class Game {
                 this._selectedButton.classList.add('chosen');
                 this.activePhrase.showMatchedLetter();
                 if (this.checkForWin()) {
-                    this.gameOver('Congratulations you won! Play again!');
+                    this.gameOver('Congratulations you won! Play again!', true);
                 }
             }
         } else {
@@ -88,7 +88,7 @@ class Game {
         if (this.missed === 5) {
             this.gameReady = false;
             this.message(this.messageBox, '<span style="color:#8b0000;">game over</span>');
-            this.gameOver('You ran out of lives, try again...'); //the timeout set here caused confusion with the Treehouse reviewer, removing this for resubmission
+            this.gameOver('You ran out of lives, try again...', false); //the timeout set here caused confusion with the Treehouse reviewer, removing this for resubmission
         }
 
         if (this.missed === 4) {
@@ -100,9 +100,14 @@ class Game {
         return this.activePhrase.revealed >= this.activePhrase.phraseLength;
     }
 
-    gameOver(message) {
+    gameOver(message, win) {
         //reset game to original state
         document.getElementById('overlay').style.display = '';
+        if (win) {
+            document.getElementById('overlay').className = 'win';
+        } else {
+            document.getElementById('overlay').className = 'lose';
+        }
         document.getElementById('game-over-message').innerText = message;
         this.message(this.messageBox, 'select any key on your keyboard or from the screen below');
         document.getElementById('qwerty').innerHTML = this.startingKeyBoard;
